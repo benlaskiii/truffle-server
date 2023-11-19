@@ -16,15 +16,8 @@ app.get("/user/:id", (req, res) => {
     // The goal, will be to read this from some sort of database.
 
     var dummyData = {
-        "userid": req.params["id"],
-        "username": "quill18",
-        "wins": 18,
-        "losses": 1000,
-        "someArray": [
-            { name: "foo", value: 2.5 },
-            { name: "bar", value: 7.1 },
-            { name: "baz", value: 9000.001 }
-        ]
+        "category":"common",
+        "location": "48.26276243584686, 11.6689410185278"
     };
 
     // JSON
