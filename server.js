@@ -4,6 +4,8 @@ var express = require("express");
 
 var app = express();
 
+const hostname = "http://16.170.112.13/";
+const port = 8000;
 app.get("/", (req, res) => {
     // MyCoolGame.com was accessed via webrowser, so server up
     // the static content for our WebGL unity application
@@ -26,6 +28,6 @@ app.get("/user/:id", (req, res) => {
 
 });
 
-app.listen( 8000, () => {
+app.listen( port,hostname, () => {
     console.log("Server has started!");
 } );
