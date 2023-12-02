@@ -1,35 +1,34 @@
-// This is the entry point for our whole application
-
 const express = require("express");
+const mongoose = require("mongoose");
+
 const https = require("https");
 const http = require("http");
 const app = express();
-
 const port = 8000;
+const truffle_router = require("./routes/truffle_router")
+const db = require("./db_connection");
 
+db.once('open' ,() => {
+	console.log('successfully connected to db');
+})
 
-app.get("/", (req, res) => {
-    // MyCoolGame.com was accessed via webrowser, so server up
-    // the static content for our WebGL unity application
-    res.send("Hello, here is your Unity WebGL game:");
-
+db.on('error', function(error) {
+    console.error('Error in MongoDb connection: ' + error);
+    mongoose.disconnect();
 });
 
-app.get("/user/:id", (req, res) => {
-    // Return the user's info of wins/losses/etc...
-    // The goal, will be to read this from some sort of database.
+db.on('close', function() {
+    console.log('connection stopped. please reconnect');
+    mongoose.connect(config.url, {server:{auto_reconnect:true}});
+});
 
-    var dummyData = {
-        "category":"common",
-        "location": "48.26276243584686, 11.6689410185278"
-    };
-
-    // JSON
-
-    res.json(dummyData);
+app.get("/", (req, res) => {
+    res.send("Truffle server");
 
 });
 
 app.listen( port, () => {
     console.log("Server has started!");
 } );
+
+app.use("/api/mushroom",truffle_router);
