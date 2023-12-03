@@ -18,8 +18,11 @@ const get_all_mushroom = (req,res,next)=>{
 const get_nearby_mushroom = (req,res)=>{
     var req_latitude = Number(req.params.latitude);
     var req_longitude = Number(req.params.longitude);
-    // console.log(typeof(latitude));
-    mushroom_info.find({latitude:{$lte:req_latitude},longitude:{$lte:req_longitude}}).then(response=>{
+    var max_lat = req_latitude+0.05;
+    var min_lat = req_latitude-0.05;
+    var max_long = req_longitude+0.05;
+    var min_long = req_longitude-0.05;
+    mushroom_info.find({latitude:{$lte:max_lat,$gte:min_lat},longitude:{$lte:max_long,$gte:min_long}}).then(response=>{
         res.json({response})
     }).catch(error=>{
         console.log(error)
