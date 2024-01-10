@@ -1,6 +1,5 @@
-var mongoose = require("mongoose");
-
-var Schema = mongoose.Schema;
+const mongoose = require("mongoose");
+const Schema = mongoose.Schema;
 
 var mushroom_info_schema = new Schema({
     category:String,
