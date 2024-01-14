@@ -1,3 +1,0 @@
-ssh ubuntu@ec2-16-170-112-13.eu-north-1.compute.amazonaws.com   
-scp ./demo/server.js ubuntu@ec2-16-170-112-13.eu-north-1.compute.amazonaws.com
-sudo kill -9 `sudo lsof -t -i:8000`   
